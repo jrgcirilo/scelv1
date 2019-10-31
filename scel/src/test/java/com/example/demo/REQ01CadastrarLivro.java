@@ -14,6 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.example.demo.model.Livro;
 import com.example.demo.model.LivroRepository;
 @RunWith(SpringRunner.class)
+/*
+ * teste
+ */
 @SpringBootTest
 public class REQ01CadastrarLivro {
 @Autowired
