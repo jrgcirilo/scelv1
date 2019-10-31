@@ -24,4 +24,12 @@ Livro ro = repository.findByIsbn("3333");
 //entao
 assertThat(ro).isEqualTo(livro);
 }
+@Test
+public void CT02ConsultaLivro_com_erro() {
+	livro=new Livro("3333","Teste de Software","Delamaro");
+	repository.save(livro);
+	Livro ro=repository.findByIsbn("3535");
+	assertThat(ro).isEqualTo(livro);
+}
+
 }
