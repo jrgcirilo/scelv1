@@ -38,8 +38,8 @@ resultActions.andExpect(model.attributeExists("livro"));
 }
 @Test //verifica o model
 public void verificaModel1() throws Exception {
-ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/livros/cadastrar"));
+ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/livros/cadastramento"));
 ModelResultMatchers model = MockMvcResultMatchers.model();
-resultActions.andExpect(model.attributeExists("/cadastrar"));
+resultActions.andExpect(model.attributeExists("livro"));
 }
 }

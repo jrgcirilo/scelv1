@@ -1,6 +1,15 @@
 package com.example.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+
+import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +20,7 @@ import com.example.demo.model.LivroRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class REQ02ConsultarLivro {
+	private Validator validator;
 @Autowired
 LivroRepository repository ;
 static Livro livro;
@@ -29,7 +39,20 @@ public void CT02ConsultaLivro_com_erro() {
 	livro=new Livro("3333","Teste de Software","Delamaro");
 	repository.save(livro);
 	Livro ro=repository.findByIsbn("3535");
-	assertThat(ro).isEqualTo(livro);
+	assertNull(ro);
 }
+@Test
+public void CT03ConsultaLivro_com_classe_invalida() {
+	livro=new Livro("3333","Teste de Software","Delamaro");
+	repository.save(livro);
+	Livro ro=repository.findByIsbn("3535");
+	assertThat(ro).isEqualTo(livro);
+	Set<ConstraintViolation<Livro>> violations = validator.validate(livro);
+	//then:
+	assertEquals(violations.size(), 1);
+	assertEquals("Livro não localizado!", violations.iterator().next().getMessage());
+
+}
+
 
 }
