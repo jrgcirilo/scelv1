@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.NaturalId;
 
-@Entity
+@Entity(name = "Usuario")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +22,13 @@ public class Usuario {
 		private String email;
 		private String cep;
 		private String endereco;
+		public Usuario(String x, String y, String z, String w, String alfa) {
+			this.ra = x;
+			this.nome = y;
+			this.email = z;
+			this.cep=w;
+			this.endereco=alfa;
+		}
 		public String getRa() {
 			return ra;
 		}
